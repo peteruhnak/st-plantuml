@@ -1,0 +1,59 @@
+@startuml
+
+participant Client as c
+participant Server as s
+
+activate s
+
+c -> s : «connect»
+activate c
+note right
+<b>chunk = [b1 b2 b3 b4 b5] + payload</b>
+<b>b1..b4:</b> payload size (unsigned) as bytes, big endian
+<b>b5:</b> chunk type byte
+<b>payload:</b> expected count of bytes
+end note
+
+== Initialization ==
+loop 0+ times
+	c -> s : <b>A</b>rgument
+end
+loop 0+ times
+	c -> s : <b>E</b>nvironment
+end
+c -> s : Working <b>D</b>irectory
+c -> s : <b>C</b>ommand
+
+...
+
+== Communication ==
+
+alt server wants stdin
+c <- s : <b>S</b>tart-reading-input
+end
+
+loop 0+ times
+alt stdin & server wants stdin
+c -> s : stdin (<b>0</b>)
+
+else stdout
+c <- s : stdout (<b>1</b>)
+else stderr
+c <- s : stderr (<b>2</b>)
+end
+end
+
+alt server wants stdin
+c -> s : stdin-eof (<b>.</b>)
+end
+
+...
+
+== Termination ==
+
+c <- s : <b>E</b>xit + client error code payload
+
+deactivate c
+
+
+@enduml
