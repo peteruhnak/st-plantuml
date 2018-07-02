@@ -5,7 +5,7 @@ participant Server as s
 
 activate s
 
-c -> s : «connect»
+c -> s : Â«connectÂ»
 activate c
 note right
 <b>chunk = [b1 b2 b3 b4 b5] + payload</b>
