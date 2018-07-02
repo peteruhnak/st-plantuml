@@ -1,3 +1,6 @@
+"
+Simple PlantUML wrapper using nailgun to generate PNG files.
+"
 Class {
 	#name : #PlantUMLClient,
 	#superclass : #Object,

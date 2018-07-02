@@ -1,3 +1,6 @@
+"
+I am a Spec model showing an image (a Form) with scrollbars if the image is larger than the viewport.
+"
 Class {
 	#name : #ScrollableImageModel,
 	#superclass : #ComposableModel,
@@ -16,21 +19,24 @@ ScrollableImageModel class >> defaultSpec [
 
 { #category : #initialization }
 ScrollableImageModel >> form: aForm [
-	morph widget scrollTarget: aForm asMorph
+	morph widget scroller submorphs copy
+		do: [ :each | morph widget scroller removeMorph: each ].
+	morph widget scroller addMorph: aForm asMorph.
+	morph widget scrollValue: 0 @ 0.
+	morph widget scrollBy: 0 @ 0.
+	morph widget hideOrShowScrollBars
 ]
 
 { #category : #accessing }
 ScrollableImageModel >> initialExtent [
-	^ 300 @ 300
+	^ 100 @ 100
 ]
 
 { #category : #initialization }
 ScrollableImageModel >> initializeWidgets [
-	morph := GeneralScrollPane new
-		changeScrollerTableLayout;
-		"			scrollTarget: f asMorph;"
-			layoutFrame: (LayoutFrame fractions: (0 @ 0 corner: 1 @ 1) offsets: (0 @ 25 corner: 0 @ 0));
-		extent: 300 @ 300;
+	morph := DraggableScrollPane new
+		hResizing: #spaceFill;
+		vResizing: #spaceFill;
 		asSpecAdapter
 ]
 
