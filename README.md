@@ -5,7 +5,7 @@ A client to execute PlantUML from Pharo using a nailgun server.
 
 ## Installation
 
-```st
+```smalltalk
 Metacello new
 	baseline: 'PlantUML';
 	repository: 'github://peteruhnak/st-plantuml/repository';
@@ -16,14 +16,14 @@ Metacello new
 
 Launching nailgun
 
-```st
+```bash
 cd nailgun
 java -jar nailgun.jar
 ```
 
 ### Editor
 
-```st
+```smalltalk
 PlantUMLEditor open
 ```
 
@@ -34,7 +34,7 @@ or use the *PlantUML* world menu.
 To generate an image (a Form instance) use the `generate:do:` method on the client.
 Generation is performed asynchronously. Once the result is available, the callback block is executed.
 
-```st
+```smalltalk
 client := PlantUMLClient new.
 client prepareClient.
 
