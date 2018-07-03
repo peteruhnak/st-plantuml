@@ -25,6 +25,15 @@ PlantUMLEditor class >> defaultSpec [
 		yourself
 ]
 
+{ #category : #'world menu' }
+PlantUMLEditor class >> menuCommandOn: aBuilder [
+	<worldMenu>
+	(aBuilder item: #PlantUML)
+		parent: #MostUsedTools;
+		withSeparatorAfter;
+		action: [ self open ]
+]
+
 { #category : #specs }
 PlantUMLEditor class >> open [
 	<script>
