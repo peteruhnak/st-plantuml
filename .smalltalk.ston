@@ -1,0 +1,15 @@
+SmalltalkCISpec {
+	#loading : [
+		SCIMetacelloLoadSpec {
+			#baseline : 'PlantUML',
+			#directory : 'repository',
+			#platforms : [ #pharo ]
+		}
+	],
+	#testing : {
+		#packages : [ 'PlantUML', 'Nailgun-Client' ],
+		#coverage : {
+			#packages : [ 'PlantUML', 'Nailgun-Client' ]
+		}
+	}
+}
